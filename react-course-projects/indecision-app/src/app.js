@@ -1,5 +1,3 @@
-'use strict';
-
 // contains our jsx content for the app
 console.log('app.js is running!');
 
@@ -7,11 +5,8 @@ console.log('app.js is running!');
 
 // JSX = JavaScript XML (JavaScript syntax extension)
 
-var template = React.createElement(
-  'h1',
-  { id: 'someId' },
-  'Indecision App!'
-);
+var template = <h1 id="someId">Indecision App!</h1>;
+
 
 var appRoot = document.getElementById('app');
 
