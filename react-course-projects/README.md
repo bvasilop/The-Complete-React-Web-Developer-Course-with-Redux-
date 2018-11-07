@@ -1,1 +1,1 @@
-# Projects folder for Complete React Web Developer Course with Redux
+## Projects folder for Complete React Web Developer Course with Redux
