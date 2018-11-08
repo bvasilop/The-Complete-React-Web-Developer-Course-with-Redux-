@@ -7,7 +7,35 @@ console.log('app.js is running!');
 
 // JSX = JavaScript XML (JavaScript syntax extension)
 
-var template = React.createElement(
+// create app object
+// title/ subtitle strings
+// use title and subtitle and subtitle
+
+var strings = {
+    title: 'Star Wars',
+    subtitle: 'Return of the Jedi'
+};
+var templateOne = React.createElement(
+    'div',
+    null,
+    React.createElement(
+        'h2',
+        null,
+        'Title : ',
+        strings.title
+    ),
+    React.createElement(
+        'h3',
+        null,
+        'Subtitle : ',
+        strings.subtitle
+    )
+);
+
+var appRoot1 = document.getElementById('app1');
+ReactDOM.render(templateOne, appRoot1);
+
+var templateTwo = React.createElement(
     'div',
     null,
     React.createElement(
@@ -41,9 +69,8 @@ var template = React.createElement(
     )
 );
 
-var appRoot1 = document.getElementById('app1');
-
-ReactDOM.render(template, appRoot1); // we use react render  to render this template in this element in the browser.
+var appRoot2 = document.getElementById('app2');
+ReactDOM.render(templateTwo, appRoot2); // we use react render  to render this template in this element in the browser.
 
 // Create a templateTwo var JSX expression
 // root div
@@ -51,25 +78,33 @@ ReactDOM.render(template, appRoot1); // we use react render  to render this temp
 // p -> Age: 43
 // p -> Location: Seattle
 // Render templateTwo instead of template
+var user = {
+    name: 'Bill Vasilopoulos',
+    age: 43,
+    location: 'Chicago'
+};
 
-var templateTwo = React.createElement(
+var templateThree = React.createElement(
     'div',
     null,
     React.createElement(
         'h1',
         null,
-        'Bill Vasilopoulos'
+        'Name: ',
+        user.name.toUpperCase()
     ),
     React.createElement(
         'p',
         null,
-        'Age : 43'
+        'Age : ',
+        user.age
     ),
     React.createElement(
         'p',
         null,
-        'Location : Seattle'
+        'Location : ',
+        user.location
     )
 );
-var appRoot2 = document.getElementById('app2');
-ReactDOM.render(templateTwo, appRoot2);
+var appRoot3 = document.getElementById('app3');
+ReactDOM.render(templateThree, appRoot3);

@@ -5,24 +5,39 @@ console.log('app.js is running!');
 
 // JSX = JavaScript XML (JavaScript syntax extension)
 
-var template = (
+// create app object
+    // title/ subtitle strings
+    // use title and subtitle and subtitle
+
+    var strings = {
+        title: 'Star Wars',
+        subtitle: 'Return of the Jedi'
+    }
+var templateOne = (
     <div>
-		<h1 id='someId'>Indecision App!</h1>
-		<p>This is some text</p>
-		<ol>
-			<li>Item one</li>
-			<li>Item two</li>
-			<li>Item three</li>
-		</ol>
+      <h2>Title : {strings.title}</h2>
+      <h3>Subtitle : {strings.subtitle}</h3>
     </div>
 );
 
-
-
 var appRoot1 = document.getElementById('app1');
+ReactDOM.render(templateOne, appRoot1);
 
 
-ReactDOM.render(template, appRoot1); // we use react render  to render this template in this element in the browser.
+var templateTwo = (
+    <div>
+			<h1 id='someId'>Indecision App!</h1>
+			<p>This is some text</p>
+				<ol>
+					<li>Item one</li>
+					<li>Item two</li>
+					<li>Item three</li>
+      	</ol>
+    </div>
+);
+
+var appRoot2 = document.getElementById('app2');
+ReactDOM.render(templateTwo, appRoot2); // we use react render  to render this template in this element in the browser.
 
 // Create a templateTwo var JSX expression
     // root div
@@ -30,13 +45,18 @@ ReactDOM.render(template, appRoot1); // we use react render  to render this temp
         // p -> Age: 43
         // p -> Location: Seattle
         // Render templateTwo instead of template
+var user = {
+    name: 'Bill Vasilopoulos',
+    age: 43,
+    location: 'Chicago'
+}
 
-var templateTwo = (
+var templateThree = (
     <div>
-        <h1>Bill Vasilopoulos</h1>
-        <p>Age : 43</p>
-        <p>Location : Seattle</p>
+      <h1>Name: {user.name.toUpperCase()}</h1>
+      <p>Age : {user.age}</p>
+      <p>Location : {user.location}</p>
     </div>
 );
-var appRoot2 = document.getElementById('app2');
-ReactDOM.render(templateTwo, appRoot2);
+var appRoot3 = document.getElementById('app3');
+ReactDOM.render(templateThree, appRoot3);
