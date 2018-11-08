@@ -5,19 +5,20 @@ console.log('app.js is running!');
 
 // JSX = JavaScript XML (JavaScript syntax extension)
 
-// create app object
-    // title/ subtitle strings
-    // use title and subtitle and subtitle
+// only render the subtitle (and p tag) if subtitle exists - logical and operator
+// render new p tag - if options.length is > 0 then "Here are your options" else  "No options"
+var app = {
+    title: 'Star Wars',
+		subtitle: 'Return of the Jedi',
+		options: ['One, Two']
+};
 
-    var strings = {
-        title: 'Star Wars',
-        subtitle: 'Return of the Jedi'
-    }
 var templateOne = (
     <div>
-      <h2>Title : {strings.title}</h2>
-      <h3>Subtitle : {strings.subtitle}</h3>
-    </div>
+      <h1>Title : {app.title}</h1>
+      {app.subtitle && <p>Subtitle : {app.subtitle}</p>}
+			<p>{app.options.length > 0 ? 'Here are your options' : 'No options'}</p>
+		</div>
 );
 
 var appRoot1 = document.getElementById('app1');
@@ -48,15 +49,30 @@ ReactDOM.render(templateTwo, appRoot2); // we use react render  to render this t
 var user = {
     name: 'Bill Vasilopoulos',
     age: 43,
-    location: 'Chicago'
+    location: 'Seattle'
+};
+
+function getLocation(location) {
+	if (location) {
+		return <p>Location: {location} </p>;
+	}
 }
+
 
 var templateThree = (
     <div>
-      <h1>Name: {user.name.toUpperCase()}</h1>
-      <p>Age : {user.age}</p>
-      <p>Location : {user.location}</p>
+      <h1>Name: {user.name ? user.name : 'Anonymous'}</h1>
+      {(user.age && user.age >= 18) && <p>Age : {user.age}</p>}
+			{getLocation(user.location)}
     </div>
 );
 var appRoot3 = document.getElementById('app3');
 ReactDOM.render(templateThree, appRoot3);
+
+
+
+// if statements
+// ternary operator
+// logical && operator
+
+
