@@ -18,3 +18,5 @@ console.log(getFirstName('Bill Vasilopoulos'));
 const getFirstName2 = (fullName) => fullName.split(' ')[0]; // regular arrow function
 console.log(getFirstName2('Bill Vasilopoulos')); // expression syntax
 
+
+
