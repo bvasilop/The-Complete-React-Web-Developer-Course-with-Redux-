@@ -1,16 +1,22 @@
 // contains our jsx content for the app
 console.log('app.js is running!');
 
+const app = {
+  title: 'Indecision App',
+	subtitle: 'Put your life in the hands of a computer',
+	options: ['One, Two']
+};
+
 const template = (
-    <div>
-		<h1 id='someId'>Indecision App!</h1>
-		<p>This is some text</p>
-			<ol>
-				<li>Item one</li>
-				<li>Item two</li>
-				<li>Item three</li>
-      </ol>
-    </div>
+  <div>
+    <h1>{app.title}</h1>
+      {app.subtitle && <p>Subtitle : {app.subtitle}</p>}
+			<p>{app.options.length > 0 ? 'Here are your options' : 'No options'}</p>
+        <ol>
+            <li>Item one</li>
+            <li>Item two</li>
+        </ol>
+	</div>
 );
 
 let count = 0;

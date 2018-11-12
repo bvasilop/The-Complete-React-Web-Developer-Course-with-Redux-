@@ -13,12 +13,16 @@ const app = {
 		options: ['One, Two']
 };
 
-const templateOne = (
+const template = (
     <div>
       <h1>Title : {app.title}</h1>
       {app.subtitle && <p>Subtitle : {app.subtitle}</p>}
 			<p>{app.options.length > 0 ? 'Here are your options' : 'No options'}</p>
-		</div>
+        <ol>
+            <li>Item one</li>
+            <li>Item two</li>
+        </ol>
+	</div>
 );
 
 const appRoot1 = document.getElementById('app1');
