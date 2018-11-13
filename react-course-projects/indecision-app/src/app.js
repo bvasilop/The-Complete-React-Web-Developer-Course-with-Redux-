@@ -24,6 +24,14 @@ const onRemoveAll = () => {
 	renderFormApp();
 };
 
+const onMakeDecision = () => {
+	const randomNum = Math.floor(Math.random() * app.options.length); // multiplying by index and rounding down
+	const option = app.options[randomNum];
+	alert(option);
+}
+
+
+
 const appRoot = document.getElementById('app');
 // create remove all button
 // onCLick handler which will wipe app.options setting it equal to an empty array(re-render the app)
@@ -37,7 +45,8 @@ const template = (
     <h1>{app.title}</h1>
       {app.subtitle && <p>Subtitle : {app.subtitle}</p>}
 			<p>{app.options.length > 0 ? 'Here are your options' : 'No options'}</p>
-			<p>{app.options.length}</p>
+
+			<button disabled={app.options.length === 0} onClick={onMakeDecision}>What should I do?</button>
 			<button onClick={onRemoveAll}>Remove all</button>
 			{
 				/*numbers.map((number) => {
