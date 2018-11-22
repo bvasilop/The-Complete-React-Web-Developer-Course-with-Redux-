@@ -38,7 +38,6 @@ var appRoot = document.getElementById('app');
 // onCLick handler which will wipe app.options setting it equal to an empty array(re-render the app)
 // count goes back to zero
 
-
 // const numbers = [55, 101, 1000];
 var renderFormApp = function renderFormApp() {
 	var template = React.createElement(
