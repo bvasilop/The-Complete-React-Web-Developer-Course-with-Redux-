@@ -40,7 +40,7 @@ const renderFormApp = () => {
 const template = (
   <div>
     <h1>{app.title}</h1>
-      {app.subtitle && <p>Subtitle : {app.subtitle}</p>}
+      {app.subtitle && <p>{app.subtitle}</p>}
 			<p>{app.options.length > 0 ? 'Here are your options' : 'No options'}</p>
 
 			<button disabled={app.options.length === 0} onClick={onMakeDecision}>What should I do?</button>
