@@ -31,30 +31,35 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
+	handlePick() {
+		alert('handlePick');
+	}
 	render() {
 		return (
 			<div>
-				<button>What Should I do?</button>
+				<button onClick={this.handlePick}>What Should I do?</button>
 			</div>
 		);
 	}
 }
+
 class Options extends React.Component {
+	handleRemoveAll() {
+		alert('some message');
+	}
 	render() {
 		return (
 			<div>
+			<button onClick={this.handleRemoveAll}>Remove All</button>
 				{
 					// this.props.options.map((option) => <p key={option}>{option}</p>) // iterate through and create p for each option
 					this.props.options.map((option) => <Option key={option} optionText={option}/>) // key is a reserved word that can't be use as an expression later. That's why we use optionText
 				}
-
 				<Option />
 			</div>
 		);
 	}
 }
-
-
 class Option extends React.Component {
 	render() {
 		return (
@@ -64,11 +69,28 @@ class Option extends React.Component {
 		);
 	}
 }
-class AddOption extends React.Component {
 
-	render() {
+// set up form with text input and submit button
+// wire up onSubmit
+// handleAddOption -> fetch value typed, if value, then alert
+class AddOption extends React.Component {
+	handleAddOption(e) { // e is event object
+			e.preventDefault();
+
+			const option = e.target.elements.option.value.trim(); // trim() removes all leading and trailing spaces
+
+			if(option) {
+				alert(option);
+			}
+		}
+		render() {
 		return (
-			<p>Add Options component here</p>
+			<div>
+				<form onSubmit={this.handleAddOption}>
+					<input type="text" name="option" />
+					<button>Add option</button>
+				</form>
+				</div>
 		);
 	}
 }
