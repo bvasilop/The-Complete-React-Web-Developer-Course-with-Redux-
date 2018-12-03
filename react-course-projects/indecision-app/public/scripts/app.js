@@ -12,7 +12,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // Classes must have capitalized first letter
 // Has to define a render method
 
-
 var IndecisionApp = function (_React$Component) {
 	_inherits(IndecisionApp, _React$Component);
 
@@ -111,16 +110,21 @@ var Action = function (_React$Component3) {
 var Options = function (_React$Component4) {
 	_inherits(Options, _React$Component4);
 
-	function Options() {
+	function Options(props) {
 		_classCallCheck(this, Options);
 
-		return _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).apply(this, arguments));
+		var _this4 = _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).call(this, props)); // props is the same as this.props in render() // calling bind() in constructor method is more efficient than calling it inline
+
+
+		_this4.handleRemoveAll = _this4.handleRemoveAll.bind(_this4); // only need to initialize bind once here and can use anywhere
+		return _this4;
 	}
 
 	_createClass(Options, [{
 		key: 'handleRemoveAll',
 		value: function handleRemoveAll() {
-			alert('some message');
+			console.log(this.props.options);
+			// alert('handleRemoveAll');
 		}
 	}, {
 		key: 'render',
@@ -133,6 +137,7 @@ var Options = function (_React$Component4) {
 					{ onClick: this.handleRemoveAll },
 					'Remove All'
 				),
+				' ',
 
 				// this.props.options.map((option) => <p key={option}>{option}</p>) // iterate through and create p for each option
 				this.props.options.map(function (option) {

@@ -2,7 +2,6 @@
 // Classes must have capitalized first letter
 // Has to define a render method
 
-
 class IndecisionApp extends React.Component {
 	render() {
 		const title = 'Indecision';
@@ -44,13 +43,18 @@ class Action extends React.Component {
 }
 
 class Options extends React.Component {
+	constructor(props) { // props is the same as this.props in render() // calling bind() in constructor method is more efficient than calling it inline
+		super(props);
+			this.handleRemoveAll = this.handleRemoveAll.bind(this); // only need to initialize bind once here and can use anywhere
+	}
 	handleRemoveAll() {
-		alert('some message');
+		console.log(this.props.options);
+		// alert('handleRemoveAll');
 	}
 	render() {
 		return (
 			<div>
-			<button onClick={this.handleRemoveAll}>Remove All</button>
+			<button onClick={this.handleRemoveAll}>Remove All</button> {/* handleRemoveAll has the exact same this binding as render */}
 				{
 					// this.props.options.map((option) => <p key={option}>{option}</p>) // iterate through and create p for each option
 					this.props.options.map((option) => <Option key={option} optionText={option}/>) // key is a reserved word that can't be use as an expression later. That's why we use optionText
