@@ -1,27 +1,71 @@
-//  react components are just ES6 classes that extend something React gives us.
+// React components are just ES6 classes that extend something React gives us.
 // Classes must have capitalized first letter
 // Has to define a render method
 // component state allows our components to manage data.
 // just think about an object with various key value pairs and when that data changes the component will automatically render to reflect those changes.
+// taking a method, passing it down into a child component and having it called down there.
+// That allows us to reverse the data flow. (allows child to communicate wit parent)
 
 class IndecisionApp extends React.Component {
+	constructor(props) {
+		super(props);
+		this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
+		this.handlePick = this.handlePick.bind(this);
+		this.handleAddOption = this.handleAddOption.bind(this);
+		this.state = {
+			options: []
+		};
+	}
+
+	handleDeleteOptions() { // wipes the state
+		this.setState(() => {
+			return {
+				options: []
+			};
+		});
+	}
+	handlePick() {
+		const	randomNum = Math.floor(Math.random() * this.state.options.length); // multiplying by index and rounding down
+		const option = this.state.options[randomNum];
+		alert(option);
+			}
+	handleAddOption(option) {
+		if (!option) { // will only run if there is an empty string
+			return 'Enter valid value to add item';
+		} else if (this.state.options.indexOf(option) > -1) {
+			return 'This option already exists'
+		}
+		this.setState((prevState) => { // equivalent to an else clause
+			return {
+				options: prevState.options.concat(option)// use array concat methed
+			};
+		});
+	}
+// create new method handlePick - pass down to Action and Setup onClick- bind here
+// randomly pick an option and alert it
 	render() {
 		const title = 'Indecision';
 		const subtitle = 'Put your life in the hands of a computer';
-		const options = ['Thing One', 'Thing Two', 'Thing Four'];
 		return (
 			<div>
 				<Header title={title} subtitle={subtitle} />
-				<Action />
-				<Options options={options} />
-				<AddOption />
+				<Action
+					hasOptions={this.state.options.length > 0}
+					handlePick={this.handlePick}
+				/>
+				<Options
+					options={this.state.options}
+					handleDeleteOptions = {this.handleDeleteOptions}
+				/>
+				<AddOption
+					handleAddOption={this.handleAddOption}
+				/>
 			</div>
 		);
 	}
 }
 class Header extends React.Component {
 	render() { // must define in React
-		// console.log(this.props); // {title: "Test value"} // coverts into an object key value pair
 		return (
 			<div>
 				<h1>{this.props.title}</h1>
@@ -32,33 +76,26 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
-	handlePick() {
-		alert('handlePick');
-	}
 	render() {
 		return (
 			<div>
-				<button onClick={this.handlePick}>What Should I do?</button>
+				<button
+				onClick={this.props.handlePick}
+				disabled={!this.props.hasOptions} // flip ! to disable
+				>
+				What Should I do?
+				</button>
 			</div>
 		);
 	}
 }
 
 class Options extends React.Component {
-	constructor(props) { // props is the same as this.props in render() // calling bind() in constructor method is more efficient than calling it inline
-		super(props);
-			this.handleRemoveAll = this.handleRemoveAll.bind(this); // only need to initialize bind once here and can use anywhere
-	}
-	handleRemoveAll() {
-		console.log(this.props.options);
-		// alert('handleRemoveAll');
-	}
 	render() {
 		return (
 			<div>
-			<button onClick={this.handleRemoveAll}>Remove All</button> {/* handleRemoveAll has the exact same this binding as render */}
+			<button onClick={this.props.handleDeleteOptions}>Remove All</button> {/* handleRemoveAll has the exact same this binding as render */}
 				{
-					// this.props.options.map((option) => <p key={option}>{option}</p>) // iterate through and create p for each option
 					this.props.options.map((option) => <Option key={option} optionText={option}/>) // key is a reserved word that can't be use as an expression later. That's why we use optionText
 				}
 				<Option />
@@ -80,18 +117,27 @@ class Option extends React.Component {
 // wire up onSubmit
 // handleAddOption -> fetch value typed, if value, then alert
 class AddOption extends React.Component {
+	constructor(props) {
+		super(props);
+		this.handleAddOption = this.handleAddOption.bind(this);
+		this.state = {
+			error: undefined
+		};
+	}
 	handleAddOption(e) { // e is event object
 			e.preventDefault();
 
 			const option = e.target.elements.option.value.trim(); // trim() removes all leading and trailing spaces
+			const error = this.props.handleAddOption(option);
 
-			if(option) {
-				alert(option);
-			}
+			this.setState(() => {
+				return { error }; // shorthand for error: error
+			});
 		}
 		render() {
 		return (
 			<div>
+				{this.state.error && <p>{this.state.error}</p>}
 				<form onSubmit={this.handleAddOption}>
 					<input type="text" name="option" />
 					<button>Add option</button>
