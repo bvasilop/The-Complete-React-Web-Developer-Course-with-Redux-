@@ -42,7 +42,6 @@ class IndecisionApp extends React.Component {
 		});
 	}
 // create new method handlePick - pass down to Action and Setup onClick- bind here
-// randomly pick an option and alert it
 	render() {
 		const title = 'Indecision';
 		const subtitle = 'Put your life in the hands of a computer';
@@ -113,9 +112,6 @@ class Option extends React.Component {
 	}
 }
 
-// set up form with text input and submit button
-// wire up onSubmit
-// handleAddOption -> fetch value typed, if value, then alert
 class AddOption extends React.Component {
 	constructor(props) {
 		super(props);

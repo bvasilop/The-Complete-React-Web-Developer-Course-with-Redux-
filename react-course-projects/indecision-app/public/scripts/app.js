@@ -67,7 +67,6 @@ var IndecisionApp = function (_React$Component) {
 			});
 		}
 		// create new method handlePick - pass down to Action and Setup onClick- bind here
-		// randomly pick an option and alert it
 
 	}, {
 		key: 'render',
@@ -218,11 +217,6 @@ var Option = function (_React$Component5) {
 
 	return Option;
 }(React.Component);
-
-// set up form with text input and submit button
-// wire up onSubmit
-// handleAddOption -> fetch value typed, if value, then alert
-
 
 var AddOption = function (_React$Component6) {
 	_inherits(AddOption, _React$Component6);
