@@ -1,6 +1,8 @@
 //  react components are just ES6 classes that extend something React gives us.
 // Classes must have capitalized first letter
 // Has to define a render method
+// component state allows our components to manage data.
+// just think about an object with various key value pairs and when that data changes the component will automatically render to reflect those changes.
 
 class IndecisionApp extends React.Component {
 	render() {
