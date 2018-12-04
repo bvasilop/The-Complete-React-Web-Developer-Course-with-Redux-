@@ -9,9 +9,9 @@ class Counter extends React.Component {
 		};
 	}
 	handleAddOne() {
-		this.setState((prevState) => {
+		this.setState((prevState) => { // access previous state as arg
 			return {
-				count: prevState.count + 1
+				count: prevState.count + 1 // access prev state count
 			};
 		});
 	}
