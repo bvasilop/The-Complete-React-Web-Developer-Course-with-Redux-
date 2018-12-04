@@ -6,6 +6,8 @@
 // taking a method, passing it down into a child component and having it called down there.
 // That allows us to reverse the data flow. (allows child to communicate wit parent)
 
+// stateless - functional - component (presentational components)
+
 class IndecisionApp extends React.Component {
 	constructor(props) {
 		super(props);
@@ -37,7 +39,7 @@ class IndecisionApp extends React.Component {
 		}
 		this.setState((prevState) => { // equivalent to an else clause
 			return {
-				options: prevState.options.concat(option)// use array concat methed
+				options: prevState.options.concat(option)// use array concat method
 			};
 		});
 	}
@@ -63,54 +65,102 @@ class IndecisionApp extends React.Component {
 		);
 	}
 }
-class Header extends React.Component {
-	render() { // must define in React
-		return (
-			<div>
-				<h1>{this.props.title}</h1>
-				<h2>{this.props.subtitle}</h2>
-			</div>
-		);
-	}
-}
 
-class Action extends React.Component {
-	render() {
+const Header = (props) => { // stateless functional component
+	return (
+		<div>
+			<h1>{props.title}</h1>
+			<h2>{props.subtitle}</h2>
+		</div>
+	);
+};
+
+
+// class Header extends React.Component { // state component
+// 	render() { // must define in React
+// 		return (
+// 			<div>
+// 				<h1>{this.props.title}</h1>
+// 				<h2>{this.props.subtitle}</h2>
+// 			</div>
+// 		);
+// 	}
+// }
+
+const Action = (props) => { // since we pass props as arg we don't need this. anymore // stateless functional component
 		return (
 			<div>
 				<button
-				onClick={this.props.handlePick}
-				disabled={!this.props.hasOptions} // flip ! to disable
+				onClick={props.handlePick}
+				disabled={!props.hasOptions} // flip ! to disable
 				>
 				What Should I do?
 				</button>
 			</div>
 		);
-	}
-}
+	};
 
-class Options extends React.Component {
-	render() {
-		return (
-			<div>
-			<button onClick={this.props.handleDeleteOptions}>Remove All</button> {/* handleRemoveAll has the exact same this binding as render */}
-				{
-					this.props.options.map((option) => <Option key={option} optionText={option}/>) // key is a reserved word that can't be use as an expression later. That's why we use optionText
-				}
-				<Option />
-			</div>
-		);
-	}
-}
-class Option extends React.Component {
-	render() {
-		return (
-			<div>
-				<p>{this.props.optionText}</p>
-			</div>
-		);
-	}
-}
+// class Action extends React.Component {
+// 	render() {
+// 		return (
+// 			<div>
+// 				<button
+// 				onClick={this.props.handlePick}
+// 				disabled={!this.props.hasOptions} // flip ! to disable
+// 				>
+// 				What Should I do?
+// 				</button>
+// 			</div>
+// 		);
+// 	}
+// }
+
+const Options = (props) => { // stateless functional component
+	return (
+		<div>
+		<button onClick={props.handleDeleteOptions}>Remove All</button>
+			{
+				props.options.map((option) => <Option key={option} optionText={option}/>)
+			}
+			<Option />
+		</div>
+	);
+};
+
+
+// class Options extends React.Component { // state component
+// 	render() {
+// 		return (
+// 			<div>
+// 			<button onClick={this.props.handleDeleteOptions}>Remove All</button> {/* handleRemoveAll has the exact same this binding as render */}
+// 				{
+// 					this.props.options.map((option) => <Option key={option} optionText={option}/>) // key is a reserved word that can't be use as an expression later. That's why we use optionText
+// 				}
+// 				<Option />
+// 			</div>
+// 		);
+// 	}
+// }
+
+
+const Option = (props) => { // stateless component // faster because it doesn't have the baggage of extends React.Component
+	return (
+		<div>
+			<p>{props.optionText}</p>
+		</div>
+	);
+};
+
+
+// class Option extends React.Component { // state component
+// 	render() {
+// 		return (
+// 			<div>
+// 				<p>{this.props.optionText}</p>
+// 			</div>
+// 		);
+// 	}
+// }
 
 class AddOption extends React.Component {
 	constructor(props) {
@@ -143,5 +193,13 @@ class AddOption extends React.Component {
 	}
 }
 
+// const User = (props) => { //stateless - functional - component (presentation al  components) // props get passed as this.props as first arg
+// 	return (
+// 		<div>
+// 			<p>Name: {props.name} </p>
+// 			<p>Age: {props.age} </p>
+// 		</div>
+// 	);
+// };
 
 ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
