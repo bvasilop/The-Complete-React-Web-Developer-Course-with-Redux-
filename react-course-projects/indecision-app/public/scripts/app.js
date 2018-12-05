@@ -35,15 +35,33 @@ var IndecisionApp = function (_React$Component) {
 		};
 		return _this;
 	}
-	// handleDeleteOptions() { // wipes the state // long version
-	// 	this.setState(() => {
-	// 		return {
-	// 			options: []
-	// 		};
-	// 	});
-	// }
 
 	_createClass(IndecisionApp, [{
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			// only accessed through class based components
+			console.log('fetching data');
+		}
+	}, {
+		key: 'componentDidUpdate',
+		value: function componentDidUpdate(prevProps, prevState) {
+			console.log('saing data');
+		}
+	}, {
+		key: 'componentWillUnmount',
+		value: function componentWillUnmount() {
+			console.log('component will unmount');
+		}
+
+		// handleDeleteOptions() { // wipes the state // long version
+		// 	this.setState(() => {
+		// 		return {
+		// 			options: []
+		// 		};
+		// 	});
+		// }
+
+	}, {
 		key: 'handleDeleteOptions',
 		value: function handleDeleteOptions() {
 			this.setState(function () {

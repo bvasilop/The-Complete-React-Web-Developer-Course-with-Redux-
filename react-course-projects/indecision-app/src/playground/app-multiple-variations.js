@@ -19,20 +19,6 @@ class IndecisionApp extends React.Component {
 			options: props.options
 		};
 	}
-
-	componentDidMount() { // only accessed through class based components
-		console.log('fetching data')
-	}
-
-	componentDidUpdate(prevProps, prevState) {
-		console.log('saing data');
-	}
-
-	componentWillUnmount () {
-		console.log('component will unmount');
-	}
-
-
 	// handleDeleteOptions() { // wipes the state // long version
 	// 	this.setState(() => {
 	// 		return {

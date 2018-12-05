@@ -3,27 +3,27 @@
 		"path": "$ROOTPATH$/react-course-projects/indecision-app/src/app.js",
 		"bookmarks": [
 			{
-				"line": 29,
+				"line": 43,
 				"column": 0,
 				"label": ""
 			},
 			{
-				"line": 46,
+				"line": 60,
 				"column": 0,
-				"label": ""
-			},
-			{
-				"line": 77,
-				"column": 34,
 				"label": ""
 			},
 			{
 				"line": 91,
+				"column": 34,
+				"label": ""
+			},
+			{
+				"line": 105,
 				"column": 0,
 				"label": ""
 			},
 			{
-				"line": 208,
+				"line": 222,
 				"column": 0,
 				"label": ""
 			}
