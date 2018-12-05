@@ -27,7 +27,8 @@ class IndecisionApp extends React.Component {
 		this.handleAddOption = this.handleAddOption.bind(this);
 		this.handleDeleteOption = this.handleDeleteOption.bind(this);
 		this.state = {
-			options: props.options
+			options: []
+			// options: props.options // since we're reading from local storage, we don't need user to pass in a prop anymore because we're going to read the saved data
 		};
 	}
 
@@ -117,9 +118,9 @@ handleDeleteOption(optionToRemove) {
 	}
 }
 
-IndecisionApp.defaultProps = { // using default props
-	options: []
-};
+// IndecisionApp.defaultProps = { // using default props // don't need default props because we're using local storage to retrieve data
+// 	options: []
+// };
 
 
 const Header = (props) => { // stateless functional component

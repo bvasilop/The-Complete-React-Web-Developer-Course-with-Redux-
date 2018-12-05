@@ -1,5 +1,9 @@
 // count - setup prop value to 0
-
+	//const num = '12';
+		// parseInt(num, 10) + 1 takes a string of numbers and converts to numbers -- base 10 // 13
+		// parseInt('abc', 10) // NAN for alpha numeric chars
+			// isNAN("a" * 33) // true
+			// isNAN(2 * 33) // false
 class Counter extends React.Component {
 	constructor(props) {
 		super(props);
@@ -7,9 +11,37 @@ class Counter extends React.Component {
 		this.handleMinusOne = this.handleMinusOne.bind(this);
 		this.handleReset = this.handleReset.bind(this);
 		this.state = {
-			count: props.count // set props
+			count: 0
+			// count: props.count // set props // don't need anymore because of local storage
 		};
 	}
+
+	componentDidMount() { // only accessed through class based components
+		const stringCount = localStorage.getItem('count');
+		const count = parseInt(stringCount, 10);
+
+		if (!isNaN(count)) { // will only return true if it is a number
+			this.setState(() => ({ count }));
+		}
+	}
+
+
+
+	componentDidUpdate(prevProps, prevState) {
+		if (prevState.count !== this.state.count) { // !== has a different length than the current one .// to check if options array length has changed
+
+			localStorage.setItem('count', this.state.count);
+			console.log('saving data');
+		}
+
+	}
+
+	// componentWillUnmount () {
+	// 	console.log('component will unmount');
+	// }
+
+
+
 	handleAddOne() {
 		this.setState((prevState) => { // access previous state as arg
 			return {
@@ -43,9 +75,11 @@ class Counter extends React.Component {
 	}
 }
 
-Counter.defaultProps = { // set default props
-	count: 0 // can setup default here as well
-};
+
+
+// Counter.defaultProps = { // set default props // Don't need anymore because we're reading from local storage
+// 	count: 0 // can setup default here as well
+// };
 
 // create three methods: handleAddOne, handleMinusOne, handleReset
 // Use console.log to print method name
