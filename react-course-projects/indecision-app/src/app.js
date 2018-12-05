@@ -1,12 +1,12 @@
 // React components are just ES6 classes that extend something React gives us.
-// Classes must have capitalized first letter
+// Classes must have capitalized first letter (Class based Components)
 // Has to define a render method
 // component state allows our components to manage data.
 // just think about an object with various key value pairs and when that data changes the component will automatically render to reflect those changes.
 // taking a method, passing it down into a child component and having it called down there.
 // That allows us to reverse the data flow. (allows child to communicate wit parent)
 
-// stateless - functional - component (presentational components)
+// stateless - functional - component (presentational components)(function based components)
 
 class IndecisionApp extends React.Component {
 	constructor(props) {
@@ -15,10 +15,9 @@ class IndecisionApp extends React.Component {
 		this.handlePick = this.handlePick.bind(this);
 		this.handleAddOption = this.handleAddOption.bind(this);
 		this.state = {
-			options: []
+			options: props.options
 		};
 	}
-
 	handleDeleteOptions() { // wipes the state
 		this.setState(() => {
 			return {
@@ -45,11 +44,10 @@ class IndecisionApp extends React.Component {
 	}
 // create new method handlePick - pass down to Action and Setup onClick- bind here
 	render() {
-		const title = 'Indecision';
 		const subtitle = 'Put your life in the hands of a computer';
 		return (
 			<div>
-				<Header title={title} subtitle={subtitle} />
+				<Header subtitle={subtitle} />
 				<Action
 					hasOptions={this.state.options.length > 0}
 					handlePick={this.handlePick}
@@ -66,16 +64,23 @@ class IndecisionApp extends React.Component {
 	}
 }
 
+IndecisionApp.defaultProps = { // using default props
+	options: []
+};
+
+
 const Header = (props) => { // stateless functional component
 	return (
 		<div>
 			<h1>{props.title}</h1>
-			<h2>{props.subtitle}</h2>
+			{props.subtitle && <h2>{props.subtitle}</h2>}
 		</div>
 	);
 };
 
-
+Header.defaultProps = { // using default props
+	title: 'Indecision!'
+};
 // class Header extends React.Component { // state component
 // 	render() { // must define in React
 // 		return (
@@ -201,5 +206,7 @@ class AddOption extends React.Component {
 // 		</div>
 // 	);
 // };
+
+// ReactDOM.render(<IndecisionApp options={['Option1', 'Option2']}/>, document.getElementById('app')); // using default props
 
 ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
