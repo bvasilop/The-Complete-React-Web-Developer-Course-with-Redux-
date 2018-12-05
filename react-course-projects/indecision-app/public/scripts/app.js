@@ -56,8 +56,10 @@ var IndecisionApp = function (_React$Component) {
 			this.setState(function (prevState) {
 				return {
 					options: prevState.options.filter(function (option) {
-						return optionToRemove !== option; // if they're not equal, than it is not an item we want to remove // return true -- stays in array
+						return optionToRemove !== option;
 					})
+					// if they're not equal, than it is not an item we want to remove // return true -- stays in array
+
 				};
 			});
 		}
