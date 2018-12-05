@@ -17,7 +17,18 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // That allows us to reverse the data flow. (allows child to communicate wit parent)
 
 // stateless - functional - component (presentational components)(function based components)
+// life cycle methods only available through class based components
 
+// using localstorage and life cycle methods (keyvalue pair store) ---only works with string data
+// localStorage.setItem('name', 'Bill');
+// localStorage.getItem('name'); // name Bill
+// localStorage.removeItem('name');
+
+// const json = JSON.stringify({ age:43 }); // "{"age":43}" --- take a regular javascript object and get the string representation. // stores data in json var
+// JSON.parse(json) // Object { age: 43 } --- take the string representation and return a true javascript object.
+// JSON.parse(json).age // 43
+// are used to save arrays and fetch it back
+// localStorage.clear() // clears all key value pairs in localStorage
 var IndecisionApp = function (_React$Component) {
 	_inherits(IndecisionApp, _React$Component);
 
@@ -40,12 +51,30 @@ var IndecisionApp = function (_React$Component) {
 		key: 'componentDidMount',
 		value: function componentDidMount() {
 			// only accessed through class based components
-			console.log('fetching data');
+			try {
+				var json = localStorage.getItem('options');
+				var options = JSON.parse(json);
+
+				if (options) {
+					// if there are options then call below
+					// this.setState(() => ({ options: options }))
+					this.setState(function () {
+						return { options: options };
+					}); // only use if it is valid
+				}
+			} catch (e) {
+				// Do nothing at all if invalid
+			}
 		}
 	}, {
 		key: 'componentDidUpdate',
 		value: function componentDidUpdate(prevProps, prevState) {
-			console.log('saing data');
+			if (prevState.options.length !== this.state.options.length) {
+				// !== has a different length than the current one .// to check if options array length has changed
+				var json = JSON.stringify(this.state.options);
+				localStorage.setItem('options', json);
+				console.log('saving data');
+			}
 		}
 	}, {
 		key: 'componentWillUnmount',
@@ -208,6 +237,12 @@ var Options = function Options(props) {
 			{ onClick: props.handleDeleteOptions },
 			'Remove All'
 		),
+		props.options.length === 0 && React.createElement(
+			'p',
+			null,
+			'Please add an option to get started!'
+		),
+		'  ',
 		props.options.map(function (option) {
 			return React.createElement(Option, {
 				key: option,
@@ -289,6 +324,11 @@ var AddOption = function (_React$Component2) {
 			this.setState(function () {
 				return { error: error };
 			}); // shorthand for error: error
+
+			if (!error) {
+				// clear input if there wasn't an error
+				e.target.elements.option.value = '';
+			}
 		}
 	}, {
 		key: 'render',
