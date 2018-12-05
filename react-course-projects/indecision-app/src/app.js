@@ -14,17 +14,31 @@ class IndecisionApp extends React.Component {
 		this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
 		this.handlePick = this.handlePick.bind(this);
 		this.handleAddOption = this.handleAddOption.bind(this);
+		this.handleDeleteOption = this.handleDeleteOption.bind(this);
 		this.state = {
 			options: props.options
 		};
 	}
-	handleDeleteOptions() { // wipes the state
-		this.setState(() => {
-			return {
-				options: []
-			};
-		});
-	}
+	// handleDeleteOptions() { // wipes the state // long version
+	// 	this.setState(() => {
+	// 		return {
+	// 			options: []
+	// 		};
+	// 	});
+	// }
+
+	handleDeleteOptions() {
+		this.setState(() => ({ options: [] })); // one liner version
+}
+
+handleDeleteOption(optionToRemove) {
+	this.setState((prevState) => ({
+		options: prevState.options.filter((option) => {
+		return optionToRemove !== option; // if they're not equal, than it is not an item we want to remove // return true -- stays in array
+		})
+	}));
+}
+
 	handlePick() {
 		const	randomNum = Math.floor(Math.random() * this.state.options.length); // multiplying by index and rounding down
 		const option = this.state.options[randomNum];
@@ -36,12 +50,9 @@ class IndecisionApp extends React.Component {
 		} else if (this.state.options.indexOf(option) > -1) {
 			return 'This option already exists'
 		}
-		this.setState((prevState) => { // equivalent to an else clause
-			return {
-				options: prevState.options.concat(option)// use array concat method
-			};
-		});
+		this.setState((prevState) => ({ options: prevState.options.concat(option)}));
 	}
+
 // create new method handlePick - pass down to Action and Setup onClick- bind here
 	render() {
 		const subtitle = 'Put your life in the hands of a computer';
@@ -55,6 +66,7 @@ class IndecisionApp extends React.Component {
 				<Options
 					options={this.state.options}
 					handleDeleteOptions = {this.handleDeleteOptions}
+					handleDeleteOption = {this.handleDeleteOption}
 				/>
 				<AddOption
 					handleAddOption={this.handleAddOption}
@@ -125,9 +137,14 @@ const Options = (props) => { // stateless functional component
 		<div>
 		<button onClick={props.handleDeleteOptions}>Remove All</button>
 			{
-				props.options.map((option) => <Option key={option} optionText={option}/>)
+				props.options.map((option) => (
+					<Option
+					key={option}
+					optionText={option}
+					handleDeleteOption={props.handleDeleteOption}
+					/>
+				))
 			}
-			<Option />
 		</div>
 	);
 };
@@ -151,7 +168,14 @@ const Options = (props) => { // stateless functional component
 const Option = (props) => { // stateless component // faster because it doesn't have the baggage of extends React.Component
 	return (
 		<div>
-			<p>{props.optionText}</p>
+			{props.optionText}
+			<button
+			onClick={(e) => {			{/*define inline arrow function -- called with (e) arg when button is clicked*/}
+			props.handleDeleteOption(props.optionText);
+			}}
+			>
+			remove
+			</button>
 		</div>
 	);
 };
@@ -181,9 +205,8 @@ class AddOption extends React.Component {
 			const option = e.target.elements.option.value.trim(); // trim() removes all leading and trailing spaces
 			const error = this.props.handleAddOption(option);
 
-			this.setState(() => {
-				return { error }; // shorthand for error: error
-			});
+			this.setState(() => ({ error })); // shorthand for error: error
+
 		}
 		render() {
 		return (
