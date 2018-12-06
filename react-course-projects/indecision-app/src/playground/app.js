@@ -133,7 +133,7 @@ const Header = (props) => { // stateless functional component
 };
 
 Header.defaultProps = { // using default props
-	title: 'Indecision!'
+	title: 'Indecision'
 };
 // class Header extends React.Component { // state component
 // 	render() { // must define in React
