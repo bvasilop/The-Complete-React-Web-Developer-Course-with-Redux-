@@ -69,13 +69,15 @@
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__person_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_js__ = __webpack_require__(1);
 // import './utils.js'; // current files directory which is source (lives inside).
-// import { square, add } from './utils.js'; // named exports
-
-// console.log('app.js is running');
-// console.log(square(4));
-// console.log(add(100, 23));
+ // named exports with default export
+// import anything, { square, add } from './utils.js'; // can call default anything as long as you reference it later with the same name
+// import subtract from './utils.js'; is also valid if importing a single default statement
+console.log('app.js is running');
+console.log(__WEBPACK_IMPORTED_MODULE_0__utils_js__["c" /* square */](4));
+console.log(__WEBPACK_IMPORTED_MODULE_0__utils_js__["a" /* add */](100, 23));
+console.log(__WEBPACK_IMPORTED_MODULE_0__utils_js__["b" /* default */](100, 81));
 
 // person.js
 // named export isAdult(18) - true if adult , otherwise false
@@ -84,28 +86,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 // import isAdult and canDrink
 //use both printing results to the console
 
+// import { isAdult, canDrink } from './person.js';
 
-
-console.log(__WEBPACK_IMPORTED_MODULE_0__person_js__["b" /* isAdult */](21));
-console.log(__WEBPACK_IMPORTED_MODULE_0__person_js__["a" /* canDrink */](21));
+// console.log(isAdult(21));
+// console.log(canDrink(21));
 
 
 
 /***/ }),
-/* 1 */,
-/* 2 */
+/* 1 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return isAdult; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return canDrink; });
-console.log ('person.js is running');
-
-const isAdult = (age) => age >=18;
+console.log('utils.js is running');
 
 
-const  canDrink = (age) => age >= 21;
+const square = (x) => x * x;
+/* harmony export (immutable) */ __webpack_exports__["c"] = square;
+ // must export a variable declaration inline
 
+const add = (a,b) => a + b;
+/* harmony export (immutable) */ __webpack_exports__["a"] = add;
+
+
+// export{ square, add }; // must individually export variables and functions to avoid polluting the global space // same as above
+
+// exports - default export - named export
+
+// const square = (x) => x * x;
+// const add = (a,b) => a + b;
+ const subtract = (a, b) => a - b;
+
+// export{ square, add, subtract as default}; // default exports // can only use a single default export
+/* harmony default export */ __webpack_exports__["b"] = (subtract);
+// export default (a, b) => a - b; //export default subtract: // inline export // default export can use a statement just a single expression
 
 
 /***/ })
