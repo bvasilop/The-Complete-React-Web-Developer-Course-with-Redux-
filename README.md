@@ -2,6 +2,8 @@
 
 ## The Complete React Web Developer Course with Redux
 
+[Course Notes](https://github.com/rossyp44Y/notesReactCourse)
+
 * Section 1: Welcome
 * Section 2: Setting Up Your Environment
 * Section 3: Hello React
