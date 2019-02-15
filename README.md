@@ -20,3 +20,6 @@
 * Section 14: Styling Budget App
 * Section 15: What Now?
 * Section 16: Free Mini Courses
+
+  * *yarn run serve --- to run live server*
+  * *yarn run build --- to run build*

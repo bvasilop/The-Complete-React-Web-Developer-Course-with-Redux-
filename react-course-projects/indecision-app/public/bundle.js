@@ -70,26 +70,24 @@
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_js__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__person_js__ = __webpack_require__(2);
 // import './utils.js'; // current files directory which is source (lives inside).
  // named exports with default export
 // import anything, { square, add } from './utils.js'; // can call default anything as long as you reference it later with the same name
 // import subtract from './utils.js'; is also valid if importing a single default statement
-console.log('app.js is running');
+
+
+
+console.log('app.js is running!');
 console.log(__WEBPACK_IMPORTED_MODULE_0__utils_js__["c" /* square */](4));
 console.log(__WEBPACK_IMPORTED_MODULE_0__utils_js__["a" /* add */](100, 23));
 console.log(__WEBPACK_IMPORTED_MODULE_0__utils_js__["b" /* default */](100, 81));
 
-// person.js
-// named export isAdult(18) - true if adult , otherwise false
-// named export canDrink(21)- true if 21 and over, otherwise false
+console.log(__WEBPACK_IMPORTED_MODULE_1__person_js__["c" /* isAdult */](20));
+console.log(__WEBPACK_IMPORTED_MODULE_1__person_js__["a" /* canDrink */](21));
 
-// import isAdult and canDrink
-//use both printing results to the console
+console.log(__WEBPACK_IMPORTED_MODULE_1__person_js__["b" /* default */](65));
 
-// import { isAdult, canDrink } from './person.js';
-
-// console.log(isAdult(21));
-// console.log(canDrink(21));
 
 
 
@@ -121,6 +119,27 @@ const add = (a,b) => a + b;
 /* harmony default export */ __webpack_exports__["b"] = (subtract);
 // export default (a, b) => a - b; //export default subtract: // inline export // default export can use a statement just a single expression
 
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return isAdult; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return canDrink; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return isSenior; });
+console.log ('person.js is running!');
+
+const isAdult = (age) => age >=18;
+
+
+const  canDrink = (age) => age >= 21;
+
+const isSenior = (age) => age >= 65;
+
+
+
+// export default isSenior;
 
 /***/ })
 /******/ ]);
