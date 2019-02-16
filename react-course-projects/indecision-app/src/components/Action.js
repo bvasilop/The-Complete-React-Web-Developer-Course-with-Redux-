@@ -1,0 +1,16 @@
+import React from 'react';
+
+const Action = (props) => { // since we pass props as arg we don't need this. anymore // stateless functional component
+		return (
+			<div>
+				<button
+				onClick={props.handlePick}
+				disabled={!props.hasOptions} // flip ! to disable
+				>
+				What Should I do?
+				</button>
+			</div>
+		);
+	};
+
+	export default Action;
