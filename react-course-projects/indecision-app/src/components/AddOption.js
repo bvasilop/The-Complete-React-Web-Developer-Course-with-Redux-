@@ -1,16 +1,11 @@
 import React from 'react';
-
-
-
 export default class AddOption extends React.Component {
-	constructor(props) {
-		super(props);
-		this.handleAddOption = this.handleAddOption.bind(this);
-		this.state = {
-			error: undefined
-		};
-	}
-	handleAddOption(e) { // e is event object
+
+  state = {
+    error: undefined
+  };
+
+	handleAddOption = (e) => { // e is event object
 			e.preventDefault();
 
 			const option = e.target.elements.option.value.trim(); // trim() removes all leading and trailing spaces
@@ -21,7 +16,7 @@ export default class AddOption extends React.Component {
 			if (!error) { // clear input if there wasn't an error
 				e.target.elements.option.value = '';
 			}
-		}
+		};
 		render() {
 		return (
 			<div>
