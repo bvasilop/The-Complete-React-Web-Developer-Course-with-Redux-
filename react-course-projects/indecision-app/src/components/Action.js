@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Action = (props) => { // since we pass props as arg we don't need this. anymore // stateless functional component
-		return (
+const Action = (props) => ( // since we pass props as arg we don't need this. anymore // stateless functional component
+
 			<div>
 				<button
 				onClick={props.handlePick}
@@ -11,6 +11,6 @@ const Action = (props) => { // since we pass props as arg we don't need this. an
 				</button>
 			</div>
 		);
-	};
+
 
 	export default Action;
