@@ -4,6 +4,7 @@ const Action = (props) => ( // since we pass props as arg we don't need this. an
 
 			<div>
 				<button
+				className="big-button"
 				onClick={props.handlePick}
 				disabled={!props.hasOptions} // flip ! to disable
 				>
